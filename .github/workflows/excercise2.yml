@@ -1,0 +1,25 @@
+name: env_variable
+
+on: workflow_dispatch
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+
+    env:
+      GREETING: "Hello"
+      NAME: "GitHub User"
+
+    steps:
+      - name: Print custom greetings
+        run: echo "$GREETING, $NAME!"
+        
+      - name: Print GitHub information
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Run ID: $GITHUB_RUN_ID"
+          echo "Workflow Name: $GITHUB_WORKFLOW"
+          echo "Actor: $GITHUB_ACTOR"
+          
+      - name: Combined Message
+        run: echo "$GREETING $NAME, this workflow is running in repository $GITHUB_REPOSITORY, triggered by $GITHUB_ACTOR."
