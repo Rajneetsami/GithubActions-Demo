@@ -1,0 +1,34 @@
+name: Multi-Job-Workflow
+on:
+ schedule:
+  - cron: "0 0 * * *"
+
+jobs: 
+ setup-job:
+  runs-on: ubuntu-latest
+  env:
+      GREETING: "Hello"
+      NAME: "GitHub User"
+  steps:
+      - name: Setup Greeting
+        run: echo "$GREETING, $NAME!"
+        
+      - name: Print Secret (for demonstration)
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: echo "The secret is $MY_SECRET"
+ 
+ dependent-job:
+  runs-on: ubuntu-latest
+  needs: setup-job
+  env:
+    FINAL_GREETING: "Goodbye"
+    NAME: "GitHub User"
+  steps:
+    - name: Print Farewell Message
+      run: echo "$FINAL_GREETING, $NAME! See you next time!"
+
+    - name: Confirm Secret Usage
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+         run: echo "Confirming that secret is available: $MY_SECRET"
