@@ -30,5 +30,6 @@ jobs:
 
     - name: Confirm Secret Usage
       env:
-       MY_SECRET: ${{ secrets.MY_SECRET }}
-      run: echo "Confirming that secret is available: $MY_SECRET"
+        MY_SECRET: ${{ secrets.MY_SECRET }}
+      run: echo "Confirming that secret is available $MY_SECRET"
+
