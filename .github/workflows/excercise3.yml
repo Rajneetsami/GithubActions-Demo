@@ -29,6 +29,6 @@ jobs:
       run: echo "$FINAL_GREETING, $NAME! See you next time!"
 
     - name: Confirm Secret Usage
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-         run: echo "Confirming that secret is available: $MY_SECRET"
+      env:
+       MY_SECRET: ${{ secrets.MY_SECRET }}
+      run: echo "Confirming that secret is available: $MY_SECRET"
