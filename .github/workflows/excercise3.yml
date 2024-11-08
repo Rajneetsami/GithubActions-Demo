@@ -12,11 +12,6 @@ jobs:
   steps:
       - name: Setup Greeting
         run: echo "$GREETING, $NAME!"
-        
-      - name: Print Secret (for demonstration)
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
-        run: echo "The secret is $MY_SECRET"
  
  dependent-job:
   runs-on: ubuntu-latest
@@ -30,6 +25,6 @@ jobs:
 
     - name: Confirm Secret Usage
       env:
-        MY_SECRET: ${{ secrets.MY_SECRET }}
+        MY_SECRET: ${{ secrets.MY_SECRET_KEY }}
       run: echo "Confirming that secret is available $MY_SECRET"
 
