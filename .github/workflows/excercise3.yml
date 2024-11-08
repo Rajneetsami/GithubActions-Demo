@@ -1,7 +1,6 @@
 name: Multi-Job-Workflow
 on:
- schedule:
-  - cron: "0 0 * * *"
+ workflow_dispatch
 
 jobs: 
  setup-job:
@@ -26,5 +25,10 @@ jobs:
     - name: Confirm Secret Usage
       env:
         MY_SECRET: ${{ secrets.MY_SECRET_KEY }}
-      run: echo "Confirming that secret is available $MY_SECRET"
+      run: |
+       if [ -n "$MY_SECRET" ]; then
+         echo "Secret is set and accessible."
+       else
+         echo "Secret is not accessible."
+       fi
 
